@@ -27,8 +27,6 @@ Article.loadAll = rawData => {
 
 Article.all = rawData.map(articleObject=> (new Article(articleObject)));
 
-return new Article;
-console.log(new Article, 'good shit')
 //.reduce notes 
 // .reduce(accumaltor, current)
 // accumalator: the starting value we eventually add the current to 

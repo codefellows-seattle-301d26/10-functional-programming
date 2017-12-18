@@ -22,7 +22,6 @@ var app = app || {};
   Article.loadAll = rawData => {
     rawData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
 
-    // rawData.forEach(articleObject => Article.all.push(new Article(articleObject)));
     Article.all = rawData.map(x => new Article(x));
   };
 

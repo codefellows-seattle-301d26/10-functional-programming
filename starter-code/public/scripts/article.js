@@ -1,6 +1,7 @@
 'use strict';
 var app = app || {};
 
+
 function Article(rawDataObj) {
   // REVIEW: In Lab 8, we explored a lot of new functionality going on here. Let's re-examine the concept of context. Normally, "this" inside of a constructor function refers to the newly instantiated object. However, in the function we're passing to forEach, "this" would normally refer to "undefined" in strict mode. As a result, we had to pass a second argument to forEach to make sure our "this" was still referring to our instantiated object. One of the primary purposes of lexical arrow functions, besides cleaning up syntax to use fewer lines of code, is to also preserve context. That means that when you declare a function using lexical arrows, "this" inside the function will still be the same "this" as it was outside the function. As a result, we no longer have to pass in the optional "this" argument to forEach!
   Object.keys(rawDataObj).forEach(key => this[key] = rawDataObj[key]);
@@ -24,15 +25,8 @@ Article.loadAll = rawData => {
   /* OLD forEach():
   rawData.forEach(articleObject => Article.all.push(new Article(articleObject)));
   */
-
-Article.all = rawData.map(articleObject=> (new Article(articleObject)));
-
-//.reduce notes 
-// .reduce(accumaltor, current)
-// accumalator: the starting value we eventually add the current to 
-// [1, 2, 3, 4] => 10 
-// acc = 0 (starting point being [0] ) curent is 1.
-// so acc is [i] + i where [i] starts at 0 and i starts at 1
+  Article.all = rawData.map(articleObject => (new Article(articleObject)));
+  
 
 };
 
@@ -45,23 +39,26 @@ Article.fetchAll = callback => {
 };
 
 Article.numWordsAll = () => {
-  Article.all.map().reduce()
-
-  // (ele => {
-  //   ele.body.split(' ')
-  // var arrTotalWords = ele.body.split(' ')
-  // console.log(arrTotalWords, 'happy message')
-  // })
-
-  return Article.all.map(ele => ele.body).reduce()
+  return Article.all.map(articleObject => articleObject.body.split(' ').length).reduce((acc, cur) => (acc + cur));
 };
+//  map through all articleObjects pass in object author.  Then if the author name is already in the new array, do not add it// 
 
 Article.allAuthors = () => {
-  return Article.all.map().reduce();
+  return Article.all.map(articleObject => articleObject.author).reduce((acc, cur) => {
+    if (!(acc.includes(cur)))acc.push(cur);
+    return acc;
+  }, []);
 };
 
+// map through authors, pass in author as argument return a new object with the author and the number of words they wrote for all of their artciles.
+
 Article.numWordsByAuthor = () => {
-  return Article.allAuthors().map(author => {})
+  return Article.allAuthors().map(author => {
+    return {
+      name: author, 
+      words: Article.all.filter(ele => ele.author === author).map(ele => ele.body.split(' ').length).reduce((acc, cur) => (acc + cur))
+    }
+  })
 };
 
 Article.truncateTable = callback => {

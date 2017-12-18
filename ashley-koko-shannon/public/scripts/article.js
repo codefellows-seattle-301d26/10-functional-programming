@@ -1,3 +1,5 @@
+import { arch } from "os";
+
 'use strict';
 var app = app || {};
 
@@ -41,7 +43,10 @@ var app = app || {};
   };
 
   Article.allAuthors = () => {
-    return Article.all.map().reduce();
+    return Article.all.map(articleObject => articleObject.author).reduce((acc, cur) => {
+      if (!(acc.includes(cur)))acc.push(cur);
+      return acc;
+    }, []);
   };
 
   Article.numWordsByAuthor = () => {

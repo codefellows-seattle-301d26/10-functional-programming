@@ -52,7 +52,12 @@ var app = app || {};
   };
 
   Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
+    return Article.allAuthors().map(author => {
+      let obj = {};
+      obj.author = author;
+      obj.words = Article.all.filter(article => article.author === obj.author).reduce((acc, cur) => acc + cur.body.split(' ').length)
+      return obj;
+    });
   };
 
   Article.truncateTable = callback => {

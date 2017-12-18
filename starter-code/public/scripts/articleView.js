@@ -3,6 +3,10 @@ var app = app || {};
 
 var articleView = {};
 
+//This is our handlebar JS for admin.html
+var source = document.getElementById('article_template').innerHTML;
+var template = Handlebars.compile(source)
+
 articleView.populateFilters = () => {
   $('article').each(function() {
     if (!$(this).hasClass('template')) {

@@ -7,6 +7,7 @@ var articleView = {};
 var source = document.getElementById('article_template').innerHTML;
 var template = Handlebars.compile(source)
 
+//
 articleView.populateFilters = () => {
   $('article').each(function() {
     if (!$(this).hasClass('template')) {

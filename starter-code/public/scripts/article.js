@@ -25,6 +25,17 @@ Article.loadAll = rawData => {
   rawData.forEach(articleObject => Article.all.push(new Article(articleObject)));
   */
 
+Article.all = rawData.map(articleObject=> (new Article(articleObject)));
+
+return new Article;
+console.log(new Article, 'good shit')
+//.reduce notes 
+// .reduce(accumaltor, current)
+// accumalator: the starting value we eventually add the current to 
+// [1, 2, 3, 4] => 10 
+// acc = 0 (starting point being [0] ) curent is 1.
+// so acc is [i] + i where [i] starts at 0 and i starts at 1
+
 };
 
 Article.fetchAll = callback => {

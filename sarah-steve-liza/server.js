@@ -7,8 +7,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
-// const conString = 'postgres://localhost:5432';
-const conString = 'postgres://sarah:123@localhost:5432/kilovolt';
+const conString = 'postgres://localhost:5432/kilovolt';
+//const conString = 'postgres://sarah:123@localhost:5432/kilovolt';
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => {
@@ -30,7 +30,7 @@ app.get('/articles', (request, response) => {
     .then(result => response.send(result.rows))
     .catch(console.error);
 });
- 
+
 app.post('/articles', (request, response) => {
   client.query(
     'INSERT INTO authors(author, "authorUrl") VALUES($1, $2) ON CONFLICT DO NOTHING',

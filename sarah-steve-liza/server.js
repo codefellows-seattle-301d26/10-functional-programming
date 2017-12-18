@@ -10,7 +10,7 @@ const app = express();
 // const conString = 'postgres://localhost:5432';
 const conString = 'postgres://sarah:123@localhost:5432/kilovolt';
 const client = new pg.Client(conString);
-client.connect(conString);
+client.connect();
 client.on('error', err => {
   console.error(err);
 });

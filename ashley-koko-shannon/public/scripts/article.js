@@ -37,7 +37,7 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
+    return Article.all.map(articleObject => articleObject.body.split(' ').length).reduce((acc, cur) => (acc + cur));
   };
 
   Article.allAuthors = () => {

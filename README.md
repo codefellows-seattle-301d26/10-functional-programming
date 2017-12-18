@@ -88,24 +88,34 @@ _Your README.md must include:_
 ```md
 # Project Name
 
-**Author**: Your Name Goes Here
+**Author**: Greg and Yohanes
 **Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 301 class. (i.e. What's your problem domain?) -->
+This app will get data for us and display the data.  It will also calculate how many words each author has written, and how many total words there are
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+Open the website browswer
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+JavaScript
+HTML
+CSS
+Handlebars
+jQuery
 
 ## Change Log
 <!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
+-18 DEC 2017 0900: handlebar values in HTML
+-18 DEC 2017 1000: bug fix for handlebars
+-18 DEC 2017 1030: updated the html files to trigger proper scripts
+-18 DEC 2017 1200: changed forEach to .map
+-18 DEC 2017 1245: First attempt at final submission
+-18 DEC 2017 1300: fixed handlbar in html file
 
 ## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
--->
+http://handlebarsjs.com/ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+
+
 ```

@@ -30,8 +30,8 @@
     </header>
     <script id="admin-template" type="text/x-handlebars-template">
           <h1>{{title}}</h1>
-          <section id="blog-stats" class="clearfix" data-author-words="{{data-words}}" data-articles="{{articles}}">
-            <dt>Total articles:</dt> <dd class="articles">{{data-articles}}</dd>
+          <section id="blog-stats" class="clearfix" data-author-words="{{data-words}}" data-articles="{{data-author}}">
+            <dt>Author:</dt> <dd class="articles">{{data-author}}</dd>
             <dt>Total words:</dt> <dd class="words">{{data-words}}</dd>
             <h2>Author Stats</h2>
             <p><em>Details on who is writing, and how much writing they are doing...</em></p>
@@ -63,7 +63,7 @@
     <script src="/scripts/article.js"></script>
     <script src="/scripts/articleView.js"></script>
     <script>
-      Article.fetchAll();
+      Article.fetchAll(articleView.initAdminPage());
     </script>
   </body>
 </html>

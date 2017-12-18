@@ -55,7 +55,7 @@ var app = app || {};
     return Article.allAuthors().map(author => {
       let obj = {};
       obj.author = author;
-      obj.words = Article.all.filter(article => article.author === obj.author).reduce((acc, cur) => acc + cur.body.split(' ').length)
+      obj.words = Article.all.filter(article => article.author === obj.author).map(article => article.body.split(' ').length).reduce((acc, cur) => acc + cur);
       return obj;
     });
   };

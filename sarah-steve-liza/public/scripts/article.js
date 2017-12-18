@@ -39,7 +39,7 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.body.map(article => article.split(' ').length).reduce((acc, cur) => acc + cur);
+    return Article.all.map(article => article.body.split(' ').length).reduce((acc, cur) => acc + cur);
   };
 
   Article.allAuthors = () => {

@@ -1,5 +1,3 @@
-import { arch } from "os";
-
 'use strict';
 var app = app || {};
 
@@ -50,7 +48,12 @@ var app = app || {};
   };
 
   Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
+    return Article.allAuthors().map(author => {
+      return {
+        name: author,
+        words: Article.all.filter(ele => ele.author === author).map(ele => ele.body.split(' ').length).reduce((acc, cur) => (acc + cur))
+      }
+    });
   };
 
   Article.truncateTable = callback => {

@@ -36,11 +36,12 @@ Article.fetchAll = callback => {
 };
 
 Article.numWordsAll = () => {
-  return Article.all.map().reduce()
+  return Article.all.map(article => article.split(' ').length).reduce((acc, cur) => acc + cur);
 };
 
 Article.allAuthors = () => {
-  return Article.all.map().reduce();
+  // TODO: FINISH
+  return Article.all.map(article => article.author).reduce();
 };
 
 Article.numWordsByAuthor = () => {

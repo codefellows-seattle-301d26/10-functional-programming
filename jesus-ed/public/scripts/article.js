@@ -22,7 +22,6 @@ var app = app || {};
   Article.loadAll = rawData => {
     rawData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
 
-    // rawData.forEach(articleObject => Article.all.push(new Article(articleObject)));
     Article.all = rawData.map(x => new Article(x));
   };
 
@@ -34,26 +33,48 @@ var app = app || {};
       })
   };
 
-  Article.numWordsAll = () => {
-    return Article.all.map(article => article.body.split(' ').length).reduce((acc, cur) => acc + cur);
+  // Article.numWordsAll = () => {
+  //   return Article.all.map(article => article.body.split(' ').length).reduce((acc, cur) => acc + cur);
+  // }
+Article.numWordsAll = () => {
+  Article.all.map(article =>
+    article.body.match(/\b\w+/g).length).reduce((a, b) => a + b)
   }
 
-  Article.allAuthors = () => {
-    return Article.all.map(article => article.author).reduce((acc, cur) => {
-      if (!acc.includes(cur)) {
-        acc.push(cur);
-      }
-      return acc;
-    }, []);
-  };
+  // Article.allAuthors = () => {
+  //   return Article.all.map(article => article.author).reduce((acc, cur) => {
+  //     if (!acc.includes(cur)) {
+  //       acc.push(cur);
+  //     }
+  //     return acc;
+  //   }, []);
+  // };
+
+  Article.allAuthors = () =>
+    Article.all.map(article => article.author)
+      .reduce((names, name) => {
+        if(names.indexOf(name) === -1) names.push(name)
+        return names}, [])
   
+  // Article.numWordsByAuthor = () => {
+  //   return Article.allAuthors().map(author => {
+  //     let obj = {};
+  //     obj.author = author;
+  //     obj.words = Article.all.filter(article => article.author === obj.author).map(article => article.body.split(' ').length).reduce((acc, cur) => acc + cur);
+  //     return obj;
+  //   });
+  // };
+
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
-      let obj = {};
-      obj.author = author;
-      obj.words = Article.all.filter(article => article.author === obj.author).map(article => article.body.split(' ').length).reduce((acc, cur) => acc + cur);
-      return obj;
-    });
+  
+      return {
+        name: author,
+        numWords: Article.all.filter(a => a.author === author)
+          .map(a => a.body.match(/\b\w+/g).length)
+          .reduce((a, b) => a + b)
+      }
+    })
   };
 
   Article.truncateTable = callback => {

@@ -25,27 +25,35 @@ Article.loadAll = rawData => {
   /* OLD forEach():
   rawData.forEach(articleObject => Article.all.push(new Article(articleObject)));
   */
+  Article.all = rawData.map(ele => new Article(ele));
 
 };
 
-Article.fetchAll = callback => {
+Article.fetchAll = callback => 
   $.get('/articles')
-    .then(results => {
-      Article.loadAll(results);
-      callback();
-    })
-};
+    .then(Article.loadAll)
+    .then(callback);
 
-Article.numWordsAll = () => {
-  return Article.all.map().reduce()
-};
+Article.numWordsAll = () => 
+  Article.all.map(article =>
+    article.body.match(/\b\w+/g).length).reduce((a,b)=>a+b)
 
-Article.allAuthors = () => {
-  return Article.all.map().reduce();
-};
+Article.allAuthors = () => 
+  Article.all.map(article => article.author)
+    .reduce((names, name) => {
+      if(names.indexOf(name) === -1) names.push(name)
+      return names
+    }, [])
 
 Article.numWordsByAuthor = () => {
-  return Article.allAuthors().map(author => {})
+  return Article.allAuthors().map(author => {
+    return {
+      name: author,
+      numWords: Article.all.filter(a => a.author === author)
+        .map(a => a.body.match(/\b\w+/g).length)
+        .reduce((a, b) + a+b)
+    }
+  })
 };
 
 Article.truncateTable = callback => {
@@ -90,6 +98,6 @@ Article.prototype.updateRecord = function(callback) {
   })
     .then(console.log)
     .then(callback);
-    
+
   module.Article=Article;
 })(app);

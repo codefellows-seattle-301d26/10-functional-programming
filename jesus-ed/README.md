@@ -23,6 +23,13 @@ SQL
 ## Change Log
 
 12-15-2017 9:10am - Add readme.
+12-15-2017 9:45am - Add admin page template
+12-15-2017 10:24am - complted fetchAll
+12-15-2017 11:25am - Finish map functions
+12-15-2017 12:15pm - Finish handlebar template
+12-15-2017 1:32pm - Working on bugs until we ran out of time
+12-15-2017 6:10pm - Fix code that wasn't working
+12-21-2017 6:50pm - Finished readme.
 
 ## Credits and Collaborations
 Thanks Mike.
